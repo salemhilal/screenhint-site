@@ -1,0 +1,17 @@
+{
+  "baseURL": "https://screenhint.com",
+  "author": "Salem Hilal",
+  "description": "",
+  "title": "ScreenHint - photographic memory at your fingertips",
+  "language": "en",
+  "social": [
+    {
+      "title": "Twitter",
+      "url": "https://twitter.com/#"
+    },
+    {
+      "title": "LinkedIn",
+      "url": "https://linkedin.com/company/#"
+    }
+  ]
+}
