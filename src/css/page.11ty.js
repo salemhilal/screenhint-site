@@ -18,10 +18,10 @@ module.exports = class {
     return await postcss([
       require('postcss-import'),
       require('autoprefixer'),
-      require('tailwindcss'),
+      require('tailwindcss')(require("./tailwind.config.js")),
       require('cssnano')
     ])
       .process(rawCss, { from: rawFilepath })
-      .then((result) => result.css);
+      .then((result) => {console.log("processed CSS");return result.css});
   }
 };
