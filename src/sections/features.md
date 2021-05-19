@@ -1,7 +1,7 @@
 ---
-title: Most AWE.SOME Features
-afterTitle: ...and so much more!
+title: There's a lot to love.
+afterTitle: ...and a whole lot more.
 type: features
 ---
 
-Pellentesque ullamcorper fringilla odio at pretium. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla mattis erat dui, ut tempor lectus dictum id.
+Use ScreenHint to reference notes, stay on task, sort reminders, compare versions of work, or visually remind you about something important.

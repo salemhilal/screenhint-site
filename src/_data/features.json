@@ -1,32 +1,18 @@
 [
   {
-    "title": "AWE.SOME Feature One",
-    "icon": "icon1.svg",
-    "content": "Maecenas pulvinar ultricies dolor, vitae sagittis nunc aliquam non. Cras vitae eros mi. Pellentesque ac orci mi. Ut dignissim tincidunt ex id tincidunt."
+    "title": "Secure and private",
+    "content": "Your screen is where you think. ScreenHint will never steal (or sell) any of your personal data, and nothing is stored without your permission."
   },
   {
-    "title": "AWE.SOME Feature Two",
-    "icon": "icon2.svg",
-    "content": "Maecenas pulvinar ultricies dolor, vitae sagittis nunc aliquam non. Cras vitae eros mi. Pellentesque ac orci mi. Ut dignissim tincidunt ex id tincidunt."
+    "title": "Intuitive",
+    "content": "You can copy hints just like you'd expect to, and you can paste them on anywhere you can paste images."
   },
   {
-    "title": "AWE.SOME Feature Three",
-    "icon": "icon3.svg",
-    "content": "Maecenas pulvinar ultricies dolor, vitae sagittis nunc aliquam non. Cras vitae eros mi. Pellentesque ac orci mi. Ut dignissim tincidunt ex id tincidunt."
+    "title": "Relatable",
+    "content": "Toss things around your desktop just like a real workspace."
   },
   {
-    "title": "AWE.SOME Feature Four",
-    "icon": "icon4.svg",
-    "content": "Maecenas pulvinar ultricies dolor, vitae sagittis nunc aliquam non. Cras vitae eros mi. Pellentesque ac orci mi. Ut dignissim tincidunt ex id tincidunt."
-  },
-  {
-    "title": "AWE.SOME Feature Five",
-    "icon": "icon5.svg",
-    "content": "Maecenas pulvinar ultricies dolor, vitae sagittis nunc aliquam non. Cras vitae eros mi. Pellentesque ac orci mi. Ut dignissim tincidunt ex id tincidunt."
-  },
-  {
-    "title": "AWE.SOME Feature Six",
-    "icon": "icon6.svg",
-    "content": "Maecenas pulvinar ultricies dolor, vitae sagittis nunc aliquam non. Cras vitae eros mi. Pellentesque ac orci mi. Ut dignissim tincidunt ex id tincidunt."
+    "title": "Flexible",
+    "content": "It is easy to resize hints, or to pin them to specific desktops."
   }
 ]

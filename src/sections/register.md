@@ -1,6 +1,6 @@
 ---
-title: Registration
+title: What are you waiting for?
 type: register
 ---
 
-Maecenas pulvinar ultricies dolor, vitae sagittis nunc aliquam non. Cras vitae eros mi.
+ScreenHint is free. Try it today and start thinking visually.

@@ -1,5 +1,5 @@
 <nav
-  class="transform-gpu scale-100 fixed flex flex-col sm:flex-row w-full justify-between items-center px-4 sm:px-6 py-1 shadow sm:shadow-none backdrop-filter backdrop-blur-lg backdrop-saturate-150 bg-white bg-opacity-75">
+  class="transform-gpu scale-100 fixed flex flex-col sm:flex-row w-full justify-between items-center px-4 sm:px-6 py-1 shadow sm:shadow-none backdrop-filter backdrop-blur-lg backdrop-saturate-150 bg-white bg-opacity-100 lg:bg-opacity-75 border-b-2 border-black lg:border-b-0 z-50">
   <div
     class="w-full sm:w-auto self-start sm:self-center flex flex-row sm:flex-none flex-no-wrap justify-between items-center">
     <a href="/" class="no-underline"><img src="/img/logo.svg" alt="AWE.SOME Logo"
@@ -9,18 +9,16 @@
   </div>
   <div id="menu"
     class="w-full sm:w-auto self-end sm:self-center hidden sm:flex flex-col sm:flex-row items-center h-full py-1 pb-4 sm:py-0 sm:pb-0">
-    <a class="text-gray-800 font-bold hover:text-purple-600 text-lg text-center w-full no-underline sm:w-auto sm:pr-4 py-2 sm:py-1"
+    <a class="text-gray-800 font-bold hover:text-blue-500 text-lg text-center w-full no-underline sm:w-auto sm:pr-4 py-2 sm:py-1"
       href="{% if isFront %}#about{% else %}{{ site.baseURL }}/#about{% endif %}">About</a>
-    <a class="text-gray-800 font-bold hover:text-purple-600 text-lg text-center w-full no-underline sm:w-auto sm:px-4 py-2 sm:py-1"
+    <a class="text-gray-800 font-bold hover:text-blue-500 text-lg text-center w-full no-underline sm:w-auto sm:px-4 py-2 sm:py-1"
       href="{% if isFront %}#features{% else %}{{ site.baseURL }}/#features{% endif %}">Features</a>
-    <span id="follow"
-      class="hidden sm:inline-block text-gray-800 font-bold hover:text-purple-600 text-lg sm:w-auto sm:px-4 sm:py-1 cursor-pointer">Follow</span>
     {% for item in site.social %}
       <a href="{{ item.url }}"
-        class="text-gray-800 font-bold hover:text-purple-600 text-center w-full no-underline sm:hidden py-2"
-        target="_blank" rel="noopener">{{ item.title }}</a>
+        class="text-gray-800 font-bold hover:text-blue-500 text-lg text-center w-full no-underline sm:w-auto sm:px-4 py-2 sm:py-1"
+        target="_blank" rel="noopener">{{ item.navTitle }}</a>
     {% endfor %}
-    <a class="bg-blue-500 inline-block px-6 py-1 rounded-xl shadow-md text-white font-bold hover:shadow-xl hover:bg-blue-700"
-      href="{% if isFront %}#register{% else %}{{ site.baseURL }}/#register{% endif %}">Download Now</a>
+    <a class="bg-blue-500 inline-block px-5 py-1 rounded-lg shadow-md text-white font-bold hover:shadow-xl hover:bg-blue-700 ring ring-blue-500"
+      href="https://apps.apple.com/us/app/screenhint/id1566621533">Download Now</a>
   </div>
 </nav>

@@ -1,6 +1,7 @@
 ---
-title: AWE.SOME Heading
+title: Think visually.
+subtitle: Keep the information you need right in front of you.
 type: about
 ---
 
-Maecenas pulvinar ultricies dolor, vitae sagittis nunc aliquam non. Cras vitae eros mi. Pellentesque ac orci mi. Ut dignissim tincidunt ex id tincidunt. Vivamus vitae erat vel tellus condimentum consectetur.
+With ScreenHint, you can create floating, resizable sticky notes from portions of your screen. They are always on top, keeping the information you need to see a glance away.

@@ -1,6 +1,7 @@
 const htmlmin = require("html-minifier");
 const markdownIt = require('markdown-it');
 const pluginRss = require("@11ty/eleventy-plugin-rss");
+const mdClass = require("@toycode/markdown-it-class");
 
 module.exports = function (eleventyConfig) {
   // PLUGINS
@@ -26,6 +27,9 @@ module.exports = function (eleventyConfig) {
       linkify: true,
       typographer: true
     })
+      .use(mdClass, {
+        h2: "text-2xl font-bold"
+      })
   )
 
   //create collections

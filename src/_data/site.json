@@ -7,11 +7,8 @@
   "social": [
     {
       "title": "Twitter",
-      "url": "https://twitter.com/#"
-    },
-    {
-      "title": "LinkedIn",
-      "url": "https://linkedin.com/company/#"
+      "url": "https://twitter.com/screenhint",
+      "navTitle": "Follow"
     }
   ]
 }
