@@ -19,6 +19,7 @@
     "tailwindcss": "^2.0.4"
   },
   "dependencies": {
+    "@11ty/eleventy-img": "^0.9.0",
     "@toycode/markdown-it-class": "^1.2.4"
   }
 }
