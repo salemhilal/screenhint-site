@@ -1,7 +1,9 @@
 <div class="lg:mt-16 mt-24 flex-0 justify-center w-full text-center">
 	<h1 class="text-black py-3 font-bold text-3xl md:text-4xl lg:text-5xl mb-0 lg:mb-6 leading-snug">Photographic memory<br/>at your fingertips.</h1>
 </div>
-<div class="flex-grow flex-shrink justify-center w-full overflow-visible block bg-center bg-cover md:bg-contain bg-no-repeat" style='background-image: url("img/just-hints.png")'></div>
+<div class="flex-grow flex-shrink justify-center w-full overflow-visible block bg-center bg-cover md:bg-contain bg-no-repeat relative" style="max-height: 60vh">
+	{% image "./src/static/img/just-hints.png", "Planning a bike ride using ScreenHint, with windows showing the bike route, a message from a friend, and a bike shop's open hours.", "justify-center w-full block absolute h-full top-0 left-0 object-cover md:object-contain" %}
+</div>
 <div class="flex-0 pt-2 pb-8 px-4 sm:px-8 w-full md:w-3/5 lg:1/2 justify-center text-center">
 	<div class="text-md md:text-lg text-gray-800 mb-6 leading-snug">ScreenHint is a screenshot tool for <strong>thinking clearly</strong>. Forget about juggling windows tabs, and spaces — ScreenHint puts the information you need right <strong>in front of you</strong>.</div>
 	<a class="bg-blue-500 inline-block px-10 py-2 rounded-lg shadow-md text-xl text-white font-bold hover:shadow-xl hover:bg-blue-700 ring ring-blue-500" href="#about">
