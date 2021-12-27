@@ -1,6 +1,6 @@
 [
   {
-    "title": "Secure and private",
+    "title": "Privacy First",
     "content": "Your screen is where you think. ScreenHint will never steal (or sell) any of your personal data, and nothing is stored without your permission."
   },
   {
@@ -13,6 +13,6 @@
   },
   {
     "title": "Flexible",
-    "content": "It is easy to resize hints, or to pin them to specific desktops."
+    "content": "Pin hints to desktops, resize them, even extract text from them using computer vision."
   }
 ]

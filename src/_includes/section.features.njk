@@ -2,7 +2,7 @@
   {% if item.data.type === 'features' %}
     <div id="features" class="w-full min-h-screen flex flex-col justify-center items-center bg-yellow-400 py-24">
       <div class="self-center text-center w-full sm:w-2/3 xl:w-1/2 px-4 sm:px:0">
-        <h2 class="text-black font-bold text-5xl mb-4">{{ item.data.title }}</h2>
+        <h2 class="text-black font-medium text-6xl mb-4">{{ item.data.title }}</h2>
         <div class="text-black text-xl mb-8">
           {{ item.templateContent | safe }}
         </div>
@@ -10,7 +10,7 @@
 
       <div class="grid grid-cols-1 grid-rows-1 md:grid-cols-2 md:grid-rows-2 gap-2 md:gap-4 rounded-sm self-center w-full max-w-lg md:max-w-screen-md p-2 md:p-0 text-xl">
         {% for item in features %}
-          <div class="w-full h-full transition duration-200 ease-in-out transform hover:-translate-y-1 hover:scale-105 text-black bg-white p-4 mb-4 border-black border-2 shadow-md hover:shadow-2xl">
+          <div class="w-full transition duration-200 ease-in-out transform hover:-translate-y-1 hover:scale-105 text-black bg-white p-4 mb-4 border-black border-2 shadow-md hover:shadow-2xl">
             <h3 class="font-bold pb-2 text-md">{{ item.title }}</h3>
             <p class="leading-snug text-sm">{{ item.content | safe }}</p>
           </div>

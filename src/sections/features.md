@@ -1,6 +1,6 @@
 ---
 title: There's a lot to love.
-afterTitle: ...and a whole lot more.
+afterTitle: ...and plenty more.
 type: features
 ---
 
