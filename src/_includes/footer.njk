@@ -1,4 +1,4 @@
-<footer class="w-full flex flex-col sm:flex-row sm:justify-center text-lg tracking-wide px-4 sm:px-0 py-16 sm:divide-black sm:divide-x-2">
+<footer class="w-full flex flex-col sm:flex-row sm:justify-center text-lg tracking-wide px-4 sm:px-0 py-16 smq:divide-black sm:divide-x-2">
   <div class="text-center pr-0 sm:pr-8 py-4">
     <ul class="list-none">
       {% for item in site.social %}
@@ -14,10 +14,10 @@
   <div class="text-center px-8 py-4">
     <ul class="list-none">
       <li>
-        <a class="text-gray-800 hover:text-blue-500 no-underline" href="{% if isFront %}#about{% else %}{{ site.baseURL }}/#about{% endif %}">About</a>
+        <a class="text-gray-800 hover:text-blue-500 no-underline" href="{% if isFront %}#about{% else %}{{ site.url }}/#about{% endif %}">About</a>
       </li>
       <li>
-        <a class="text-gray-800 hover:text-blue-500 no-underline" href="{% if isFront %}#features{% else %}{{ site.baseURL }}/#features{% endif %}">Features</a>
+        <a class="text-gray-800 hover:text-blue-500 no-underline" href="{% if isFront %}#features{% else %}{{ site.url }}/#features{% endif %}">Features</a>
       </li>
     </ul>
   </div>
