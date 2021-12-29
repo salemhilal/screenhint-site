@@ -19,6 +19,7 @@
 <meta name="twitter:card" content="{% if site.image -%}summary_large_image{% else %}summary{% endif %}">
 {%- if site.image -%}
   <meta property="og:image" content="{{ site.image | url | absoluteUrl(site.url) }}">
+  <meta property="twitter:image" content="{{ site.image | url | absoluteUrl(site.url) }}">
 {%- endif -%}
 <!-- ./END SOCIAL META DATA -->
 <meta name="theme-color" content="#ffffff">
