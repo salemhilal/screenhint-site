@@ -4,18 +4,16 @@
 <link rel="preload" href="/css/page.css" as="style">
 
 <!-- PRELOAD CDN SCRIPTS -->
-<link rel="preconnect" href="https://unpkg.com/popper.js@1" as="script">
-<link rel="preconnect" href="https://unpkg.com/tippy.js@4" as="script">
-<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
+<!-- META / SEO -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="{{ description or site.description }}">
 <meta name="author" content="{{ site.author }}">
 <meta name="robots" content="index,follow">
-
-<!-- BEGIN SOCIAL META DATA -->
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:title" content="{{ title or site.title }}">
+<meta property="og:type" content="website">
 <meta property="og:description" content="{{ description  or site.description }}">
 <meta property="og:url" content="{{ site.url }}">
 <meta name="twitter:card" content="{% if site.image -%}summary_large_image{% else %}summary{% endif %}">
@@ -23,11 +21,10 @@
   <meta property="og:image" content="{{ site.image | url | absoluteUrl(site.url) }}">
   <meta property="twitter:image" content="{{ site.image | url | absoluteUrl(site.url) }}">
 {%- endif -%}
-<!-- END SOCIAL META DATA -->
 
 <meta name="theme-color" content="#ffffff">
 <title>{{ title or site.title }}</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/css/page.css">
 {% if not isFront %}
