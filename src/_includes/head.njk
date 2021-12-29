@@ -16,9 +16,9 @@
 <meta property="og:title" content="{{ title or site.title }}">
 <meta property="og:description" content="{{ description  or site.description }}">
 <meta property="og:url" content="{{ absolutePageUrl }}">
-<meta name="twitter:card" content="{% if image -%}summary_large_image{% else %}summary{% endif %}">
-{%- if image -%}
-  <meta property="og:image" content="{{ image | url | absoluteUrl(site.url) }}">
+<meta name="twitter:card" content="{% if site.image -%}summary_large_image{% else %}summary{% endif %}">
+{%- if site.image -%}
+  <meta property="og:image" content="{{ site.image | url | absoluteUrl(site.url) }}">
 {%- endif -%}
 <!-- ./END SOCIAL META DATA -->
 <meta name="theme-color" content="#ffffff">
