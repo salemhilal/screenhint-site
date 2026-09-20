@@ -1,33 +1,14 @@
-<footer class="w-full flex flex-col sm:flex-row sm:justify-center text-lg tracking-wide px-4 sm:px-0 py-16 smq:divide-black sm:divide-x-2">
-  <div class="text-center pr-0 sm:pr-8 py-4">
-    <ul class="list-none">
-      {% for item in site.social %}
-        <li>
-          <a class="text-gray-800 hover:text-blue-500 no-underline" href="{{ item.url }}" target="_blank" rel="_noopener">{{ item.navTitle }}</a>
-        </li>
-      {% endfor %}
-        <li>
-          <a class="text-gray-800 hover:text-blue-500 no-underline" href="mailto:screenhint@salem.io" target="_blank" rel="_noopener">Contact</a>
-        </li>
-    </ul>
-  </div>
-  <div class="text-center px-8 py-4">
-    <ul class="list-none">
-      <li>
-        <a class="text-gray-800 hover:text-blue-500 no-underline" href="{% if isFront %}#about{% else %}{{ site.url }}/#about{% endif %}">About</a>
+<footer class="w-full flex flex-row justify-center text-lg tracking-wide px-4 sm:px-0 py-16">
+  <div class="text-center py-4">
+    <ul class="list-none flex flex-col sm:flex-row sm:divide-x-2 sm:divide-black gap-2 sm:gap-0">
+      <li class="sm:pr-8">
+        <a class="text-gray-800 hover:text-mustard-600 no-underline" href="mailto:screenhint@salem.io" target="_blank" rel="_noopener">Contact</a>
       </li>
-      <li>
-        <a class="text-gray-800 hover:text-blue-500 no-underline" href="{% if isFront %}#features{% else %}{{ site.url }}/#features{% endif %}">Features</a>
+      <li class="sm:px-8">
+        <a class="text-gray-800 hover:text-mustard-600 no-underline" href="/privacy">Privacy</a>
       </li>
-    </ul>
-  </div>
-  <div class="text-center pl-0 sm:pl-8 py-4">
-    <ul class="list-none">
-      <li>
-        <a class="text-gray-800 hover:text-blue-500 no-underline" href="/privacy">Privacy</a>
-      </li>
-      <li>
-        <a class="text-gray-800 hover:text-blue-500 no-underline" href="/credits">Credits</a>
+      <li class="sm:pl-8">
+        <a class="text-gray-800 hover:text-mustard-600 no-underline" href="/credits">Credits</a>
       </li>
     </ul>
   </div>
