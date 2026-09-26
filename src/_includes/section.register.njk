@@ -1,20 +1,20 @@
 {% for item in collections.sections %}
   {% if item.data.type === 'register' %}
-    <div id="register" class="w-full h-screen flex flex-col justify-center items-center pt-24 pb-36 bg-mustard-500">
+    <div id="register" class="w-full flex flex-col justify-center items-center py-20 md:py-24 bg-mustard-500">
       <div class="self-center text-center w-full p-4 md:p-0">
         <div class="inline-block py-12 px-8 shadow-lg rounded-sm bg-white">
-          <h2 class="font-medium text-black text-4xl mb-4">{{ item.data.title }}</h2>
+          <h2 class="font-medium text-black text-3xl md:text-4xl mb-4">{{ item.data.title }}</h2>
           <div class="text-gray-600 text-lg mb-2">
             {{ item.templateContent | safe }}
           </div>
           <div class="mb-2">
             <a href="https://apps.apple.com/us/app/screenhint/id1566621533">
-              <img src="/img/app-store.svg" alt="Download on the mac app store" class="inline-block h-16 mt-4">
+              <img src="/img/app-store.svg" alt="Download on the Mac App Store" class="inline-block h-16 mt-4">
             </a>
           </div>
           <div class="text-gray-600">
             <small>
-              (Or join our beta program <a class="underline hover:text-mustard-500" href="https://testflight.apple.com/join/cOOXw8ut">on TestFlight</a>.)
+              (Or join our beta program <a class="hl underline" href="https://testflight.apple.com/join/cOOXw8ut">on TestFlight</a>.)
             </small>
           </div>
         </div>

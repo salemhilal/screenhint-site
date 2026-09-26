@@ -5,7 +5,7 @@ const mdClass = require("@toycode/markdown-it-class");
 const Image = require("@11ty/eleventy-img");
 
 // https://www.11ty.dev/docs/plugins/image/#use-this-in-your-templates
-async function imageShortcode(src, alt, cls) {
+async function imageShortcode(src, alt, cls, loading = "lazy") {
   let metadata = await Image(src, {
     widths: [300, 600, null],
     formats: ["webp", "jpeg"],
@@ -19,9 +19,11 @@ async function imageShortcode(src, alt, cls) {
     class: cls,
     alt,
     sizes,
-    loading: "lazy",
-    decoding: "async",
+    loading,
+    decoding: loading === "eager" ? "auto" : "async",
   };
+  // Above-the-fold images should be fetched before anything else
+  if (loading === "eager") imageAttributes.fetchpriority = "high";
 
   return Image.generateHTML(metadata, imageAttributes, {
     whitespaceMode: "inline"
