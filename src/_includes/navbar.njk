@@ -1,23 +1,34 @@
 <nav
-  class="transform-gpu scale-100 flex flex-col sm:flex-row w-full justify-between items-center px-4 sm:px-6 py-1 z-50">
+  class="relative transform-gpu scale-100 flex flex-col sm:flex-row w-full justify-between items-center px-4 sm:px-6 py-1 z-50">
   <div
     class="w-full sm:w-auto self-start sm:self-center flex flex-row sm:flex-none flex-no-wrap justify-between items-center">
     <a href="/" class="no-underline flex items-center gap-1 py-1">
       <span class="text-black font-semibold text-2xl sm:text-3xl leading-none tracking-logo">screen</span>
       <span class="bg-mustard-500 shadow rounded-sm px-1.5 py-0.5 text-black font-semibold text-2xl sm:text-3xl leading-none tracking-logo">hint</span>
     </a>
-    <button id="menuBtn" class="hamburger block sm:hidden" type="button" onclick="navToggle();" aria-label="Show Menu"><span
+    <button id="menuBtn" class="hamburger block sm:hidden" type="button" onclick="navToggle();" aria-label="Show Menu" aria-controls="menu" aria-expanded="false"><span
         class="hamburger__top-bun"></span><span class="hamburger__bottom-bun"></span></button>
   </div>
   <div id="menu"
-    class="w-full sm:w-auto self-end sm:self-center hidden sm:flex flex-col sm:flex-row items-center h-full py-1 pb-4 sm:py-0 sm:pb-0">
+    class="absolute sm:static top-full left-0 right-0 w-full sm:w-auto sm:self-center hidden sm:flex flex-col sm:flex-row items-center sm:h-full bg-white shadow-md sm:shadow-none py-1 pb-4 sm:py-0 sm:pb-0">
     <a class="text-gray-800 font-normal hl-link text-lg text-center w-full no-underline sm:w-auto sm:px-4 py-2 sm:py-1"
       href="/#about"><span class="hl">About</span></a>
     <a class="text-gray-800 font-normal hl-link text-lg text-center w-full no-underline sm:w-auto sm:px-4 py-2 sm:py-1"
       href="/#features"><span class="hl">Features</span></a>
     <a class="text-gray-800 font-normal hl-link text-lg text-center w-full no-underline sm:w-auto sm:px-4 py-2 sm:py-1"
-      href="mailto:screenhint@salem.io" target="_blank" rel="noopener"><span class="hl">Contact</span></a>
-    <a class="bg-black inline-block px-5 py-2 rounded-sm shadow text-white font-normal hover:bg-gray-800"
+      href="/contact"><span class="hl">Contact</span></a>
+    <a class="btn-dark bg-black inline-block px-5 py-2 rounded-sm shadow text-white font-normal hover:bg-gray-800"
       href="https://apps.apple.com/us/app/screenhint/id1566621533">Download for Mac</a>
   </div>
 </nav>
+<script>
+  function navToggle() {
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+    const open = btn.classList.toggle('open');
+    menu.classList.toggle('flex', open);
+    menu.classList.toggle('hidden', !open);
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'Hide Menu' : 'Show Menu');
+  }
+</script>

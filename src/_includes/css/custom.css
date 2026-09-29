@@ -130,6 +130,11 @@ button:focus-visible {
   outline-offset: -2px;
 }
 
+/* White text on black would give a white ring on a white page, so use black */
+.btn-dark:focus-visible {
+  outline-color: #000;
+}
+
 /* Link hover: brand-yellow highlight sweeps in behind the text.
    Use .hl-link on the <a> with a <span class="hl"> label inside (keeps the
    tap area large), or .hl directly on an inline link inside a sentence. */
