@@ -1,39 +1,16 @@
-<footer class="w-full flex flex-col sm:flex-row sm:justify-center text-lg tracking-wide px-4 sm:px-0 py-16 smq:divide-black sm:divide-x-2">
-  <div class="text-center pr-0 sm:pr-8 py-4">
-    <ul class="list-none">
-      {% for item in site.social %}
-        <li>
-          <a class="text-gray-800 hover:text-blue-500 no-underline" href="{{ item.url }}" target="_blank" rel="_noopener">{{ item.navTitle }}</a>
-        </li>
-      {% endfor %}
-        <li>
-          <a class="text-gray-800 hover:text-blue-500 no-underline" href="mailto:screenhint@salem.io" target="_blank" rel="_noopener">Contact</a>
-        </li>
-    </ul>
-  </div>
-  <div class="text-center px-8 py-4">
-    <ul class="list-none">
-      <li>
-        <a class="text-gray-800 hover:text-blue-500 no-underline" href="{% if isFront %}#about{% else %}{{ site.url }}/#about{% endif %}">About</a>
-      </li>
-      <li>
-        <a class="text-gray-800 hover:text-blue-500 no-underline" href="{% if isFront %}#features{% else %}{{ site.url }}/#features{% endif %}">Features</a>
-      </li>
-    </ul>
-  </div>
-  <div class="text-center pl-0 sm:pl-8 py-4">
-    <ul class="list-none">
-      <li>
-        <a class="text-gray-800 hover:text-blue-500 no-underline" href="/privacy">Privacy</a>
-      </li>
-      <li>
-        <a class="text-gray-800 hover:text-blue-500 no-underline" href="/credits">Credits</a>
-      </li>
-    </ul>
-  </div>
+<footer class="w-full flex flex-col items-center text-center tracking-wide px-4 sm:px-0 pt-16 pb-8">
+  <ul class="footer-links list-none flex flex-col sm:flex-row text-lg">
+    <li class="sm:px-8">
+      <a class="hl-link inline-block py-3 text-gray-800 no-underline" href="/contact"><span class="hl">Contact</span></a>
+    </li>
+    <li class="sm:px-8">
+      <a class="hl-link inline-block py-3 text-gray-800 no-underline" href="/privacy"><span class="hl">Privacy</span></a>
+    </li>
+    <li class="sm:px-8">
+      <a class="hl-link inline-block py-3 text-gray-800 no-underline" href="/credits"><span class="hl">Credits</span></a>
+    </li>
+  </ul>
+  <p class="mt-4 text-gray-800 text-xs font-bold">
+    &copy; <a class="hl-link inline-block py-3 underline" rel="noopener" target="_blank" href="https://salem.io"><span class="hl">Salem Hilal</span></a>
+  </p>
 </footer>
-<div class="w-full text-center pb-8">
-  <span class="inline-block text-gray-800 text-xs font-light p-2 font-bold hover:text-yellow-200 hover:bg-black rounded-sm">
-    &copy; <a class="underline" rel="_noopener" target="_blank" href="https://salem.io">Salem Hilal</a>
-  </span>
-</div>

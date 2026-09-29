@@ -4,8 +4,8 @@
   scroll-behavior: smooth;
 }
 
-.font-roboto {
-  font-family: 'Roboto', sans-serif;
+.font-grotesk {
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .h-screen-85 {
@@ -117,4 +117,84 @@ html {
 
 .tippy-tooltip[x-placement^='bottom'] .tippy-arrow {
     border-bottom-color: #ccc;
+}
+/* Visible keyboard focus on every background (black, white, mustard) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* The menu button sits at the screen edge, so draw its ring inside */
+.hamburger:focus-visible {
+  outline-offset: -2px;
+}
+
+/* White text on black would give a white ring on a white page, so use black */
+.btn-dark:focus-visible {
+  outline-color: #000;
+}
+
+/* Link hover: brand-yellow highlight sweeps in behind the text.
+   Use .hl-link on the <a> with a <span class="hl"> label inside (keeps the
+   tap area large), or .hl directly on an inline link inside a sentence. */
+.hl {
+  background-image: linear-gradient(#FDC331, #FDC331);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
+  padding: 0.1em 0.3em;
+  margin: 0 -0.3em;
+  border-radius: 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 0.2s ease-out, color 0.2s ease-out;
+}
+
+.hl-link:hover .hl,
+.hl-link:focus-visible .hl,
+a.hl:hover,
+a.hl:focus-visible {
+  background-size: 100% 100%;
+  color: #000;
+}
+
+/* Even line lengths for headings and short centred copy */
+h1,
+h2,
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Footer: short 1px dividers between links; the links keep their full tap height */
+.footer-links li {
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .footer-links li + li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 1.25rem;
+    transform: translateY(-50%);
+    border-left: 1px solid #D1D5DB;
+  }
+}
+
+/* Respect the OS "Reduce motion" setting */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .feature-card:hover {
+    transform: none !important;
+  }
 }
