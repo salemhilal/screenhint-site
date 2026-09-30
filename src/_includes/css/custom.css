@@ -210,8 +210,8 @@ h2,
   max-width: 100%;
   max-height: 100%;
   cursor: pointer;
-  /* Same corners and shadow as the site's buttons, plus a hairline border. */
-  border: 1px solid #E5E7EB;
+  /* Same corners and shadow as the site's buttons, plus a black border. */
+  border: 2px solid #000;
   border-radius: 0.125rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
@@ -227,6 +227,8 @@ h2,
     height: 100%;
     object-fit: cover;
     object-position: 100% 50%;
+    /* The video bleeds off the page here, so a border would only frame the top and bottom. */
+    border: none;
   }
 }
 
