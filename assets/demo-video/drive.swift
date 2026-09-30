@@ -65,7 +65,11 @@ switch CommandLine.arguments.dropFirst().first {
 case "setup":
     NSRunningApplication.runningApplications(withBundleIdentifier: "com.apple.finder").first?.activate()
     sleep(0.3)
-    post(.mouseMoved, rest)
+    // A small wiggle: macOS hides the pointer after keyboard input until the mouse moves.
+    for dx in [0.0, 4, 8, 4, 0, -4, 0] {
+        post(.mouseMoved, CGPoint(x: rest.x + dx, y: rest.y))
+        sleep(0.03)
+    }
 
 case "take":
     sleep(1.0)                                              // opening beat
