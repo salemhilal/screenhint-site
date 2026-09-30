@@ -1,10 +1,10 @@
 <div class="lg:mt-8 mt-10 flex-0 justify-center w-full text-center">
 	<h1 class="text-black py-3 font-medium text-4xl md:text-5xl lg:text-6xl mb-0 leading-snug">Photographic memory<br/>at your fingertips.</h1>
 </div>
-<div class="w-full sm:px-4 flex justify-center">
+<div class="flex-grow flex-shrink w-full min-h-0 relative" style="max-width: 960px">
 	{# Autoplay is started by the script below, so it can respect Reduce Motion. The poster covers loading and no-JS.
-	   Sized by width (up to 960px), but never taller than 72% of the window so it fits short screens. #}
-	<video id="heroVideo" class="block w-full h-auto" style="max-width: min(960px, calc(72vh * 4 / 3))" muted loop playsinline preload="auto"
+	   The video fills whatever height the hero has left (the hero is one screen tall), up to 960px wide. #}
+	<video id="heroVideo" class="absolute inset-0 w-full h-full object-contain" muted loop playsinline preload="auto"
 		poster="/video/screenhint-demo-poster.jpg" width="1600" height="1200"
 		aria-label="ScreenHint in action: a keyboard shortcut dims the screen, the wind map in the Weather app is selected and becomes a floating hint, the hint is dragged beside the window, and a double-click closes it.">
 		<source src="/video/screenhint-demo.webm" type="video/webm">
@@ -29,8 +29,8 @@
 		reduceMotion.addEventListener('change', update);
 	})();
 </script>
-<div class="flex-0 pt-2 pb-8 px-4 sm:px-8 w-full md:w-3/5 lg:1/2 justify-center text-center">
-	<div class="text-balance text-md md:text-lg text-gray-800 mb-6 leading-snug">ScreenHint for Mac helps you <strong>think clearly</strong> by putting the information you need right <strong>in front of you</strong>.</div>
+<div class="flex-0 pt-2 pb-6 px-4 sm:px-8 w-full md:w-3/5 lg:1/2 justify-center text-center">
+	<div class="text-balance text-md md:text-lg text-gray-800 mb-4 leading-snug">ScreenHint for Mac helps you <strong>think clearly</strong> by putting the information you need right <strong>in front of you</strong>.</div>
 	<a class="btn-dark bg-black inline-block px-10 py-3 rounded-sm shadow text-xl text-white font-normal hover:bg-gray-800" href="https://apps.apple.com/us/app/screenhint/id1566621533">
 		Download for Mac
 	</a>
