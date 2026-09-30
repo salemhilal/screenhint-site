@@ -1,9 +1,10 @@
-<div class="lg:mt-16 mt-10 flex-0 justify-center w-full text-center">
-	<h1 class="text-black py-3 font-medium text-4xl md:text-5xl lg:text-6xl mb-0 lg:mb-6 leading-snug">Photographic memory<br/>at your fingertips.</h1>
+<div class="lg:mt-8 mt-10 flex-0 justify-center w-full text-center">
+	<h1 class="text-black py-3 font-medium text-4xl md:text-5xl lg:text-6xl mb-0 leading-snug">Photographic memory<br/>at your fingertips.</h1>
 </div>
-<div class="flex-grow flex-shrink justify-center w-full overflow-visible block relative" style="max-height: 60vh">
-	{# Autoplay is started by the script below, so it can respect Reduce Motion. The poster covers loading and no-JS. #}
-	<video id="heroVideo" class="w-full block absolute h-full top-0 left-0 object-contain" muted loop playsinline preload="auto"
+<div class="w-full sm:px-4 flex justify-center">
+	{# Autoplay is started by the script below, so it can respect Reduce Motion. The poster covers loading and no-JS.
+	   Sized by width (up to 960px), but never taller than 72% of the window so it fits short screens. #}
+	<video id="heroVideo" class="block w-full h-auto" style="max-width: min(960px, calc(72vh * 4 / 3))" muted loop playsinline preload="auto"
 		poster="/video/screenhint-demo-poster.jpg" width="1600" height="1200"
 		aria-label="ScreenHint in action: a keyboard shortcut dims the screen, the wind map in the Weather app is selected and becomes a floating hint, the hint is dragged beside the window, and a double-click closes it.">
 		<source src="/video/screenhint-demo.webm" type="video/webm">
