@@ -184,8 +184,9 @@ h2,
 }
 
 /* Hero demo video. On wider screens it fills the height the one-screen hero has left and
-   scales to fit. On phones it's a 4:3 window anchored to the right, so the hint and wind map stay
-   in view and the left side of the Weather app runs off the page. */
+   scales to fit; the video element shrinks to the picture so its border and shadow hug the frame.
+   On phones it's a 4:3 window anchored to the right, so the hint and wind map stay in view and the
+   left side of the Weather app runs off the page. */
 .hero-video {
   position: relative;
   width: 100%;
@@ -194,12 +195,25 @@ h2,
   min-height: 0;
 }
 
-.hero-video video {
+.hero-video__frame {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-video video {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
+  /* Same corners and shadow as the site's buttons, plus a hairline border. */
+  border: 1px solid #E5E7EB;
+  border-radius: 0.125rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 @media (max-width: 639px) {
@@ -209,6 +223,8 @@ h2,
   }
 
   .hero-video video {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: 100% 50%;
   }

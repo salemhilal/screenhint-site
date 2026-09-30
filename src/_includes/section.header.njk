@@ -2,31 +2,40 @@
 	<h1 class="text-black py-3 font-medium text-4xl md:text-5xl lg:text-6xl mb-0 leading-snug">Photographic memory<br/>at your fingertips.</h1>
 </div>
 <div class="hero-video">
-	{# Autoplay is started by the script below, so it can respect Reduce Motion. The poster covers loading and no-JS.
-	   Sizing lives in custom.css (.hero-video). #}
-	<video id="heroVideo" muted loop playsinline preload="auto"
-		poster="/video/screenhint-demo-poster.jpg" width="1920" height="1114"
-		aria-label="ScreenHint in action: a keyboard shortcut dims the screen, the wind map in the Weather app is selected and becomes a floating hint, the hint is dragged beside the window, and a double-click closes it.">
-		<source src="/video/screenhint-demo.webm" type="video/webm">
-		<source src="/video/screenhint-demo.mp4" type="video/mp4">
-	</video>
+	{# Plays once on load (unless Reduce Motion is on), then click, Enter, or Space plays it again.
+	   The poster covers loading and no-JS. Sizing and framing live in custom.css (.hero-video). #}
+	<div class="hero-video__frame">
+		<video id="heroVideo" muted playsinline preload="auto" tabindex="0" title="Play again"
+			poster="/video/screenhint-demo-poster.jpg" width="1920" height="1114"
+			aria-label="ScreenHint in action: a keyboard shortcut dims the screen, the wind map in the Weather app is selected and becomes a floating hint, the hint is dragged beside the window, and a double-click closes it. Press to play.">
+			<source src="/video/screenhint-demo.webm" type="video/webm">
+			<source src="/video/screenhint-demo.mp4" type="video/mp4">
+		</video>
+	</div>
 </div>
 <script>
 	(function () {
 		var video = document.getElementById('heroVideo');
 		var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-		function update() {
-			if (reduceMotion.matches) {
-				// Show the poster with controls, so it only plays if someone asks it to.
-				video.pause();
-				video.controls = true;
-			} else {
-				video.controls = false;
+
+		function toggle() {
+			if (video.paused || video.ended) {
+				if (video.ended) video.currentTime = 0;
 				video.play().catch(function () {});
+			} else {
+				video.pause();
 			}
 		}
-		update();
-		reduceMotion.addEventListener('change', update);
+
+		video.addEventListener('click', toggle);
+		video.addEventListener('keydown', function (event) {
+			if (event.key === 'Enter' || event.key === ' ') {
+				event.preventDefault();
+				toggle();
+			}
+		});
+
+		if (!reduceMotion.matches) video.play().catch(function () {});
 	})();
 </script>
 <div class="flex-0 pt-2 pb-6 px-4 sm:px-8 w-full md:w-3/5 lg:1/2 justify-center text-center">
