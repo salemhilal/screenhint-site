@@ -19,10 +19,16 @@
 <meta name="twitter:card" content="{% if site.image -%}summary_large_image{% else %}summary{% endif %}">
 {%- if site.image -%}
   <meta property="og:image" content="{{ site.image | url | absoluteUrl(site.url) }}">
+  <meta property="og:image:width" content="2400">
+  <meta property="og:image:height" content="1260">
+  <meta property="og:image:alt" content="{{ site.imageAlt }}">
   <meta property="twitter:image" content="{{ site.image | url | absoluteUrl(site.url) }}">
 {%- endif -%}
 
-<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#fafaf8">
 <title>{{ title or site.title }}</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
