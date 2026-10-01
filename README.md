@@ -1,6 +1,6 @@
 # [screenhint.com](https://www.screenhint.com)
 
-![Screenhint.com's social media preview image. It has a few screenshots and says "Photographic memory at your fingertips."](src/static/img/screenhint-thumbnail.png)
+![Screenhint.com's social media preview image. It says "Photographic memory at your fingertips" above an app window with a figure from it floating alongside as a hint.](src/static/img/social-preview.png)
 
 A homepage for Screenhint, forked from [11ty-landing-page](https://github.com/ttntm/11ty-landing-page).
 

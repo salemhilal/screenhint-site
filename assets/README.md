@@ -43,6 +43,12 @@ The PNGs are rendered from geometry rather than rasterised from the SVG, so the
 two can drift if only one is edited. Treat the SVG as the source of truth and
 re-render the ladder from it after any change.
 
+### Favicons
+
+`make-favicons.py` derives the site's favicons from the master and writes them to `src/static/`
+(`favicon.svg`, `favicon.ico`, `apple-touch-icon.png`). They are the icon cropped to its body,
+without the macOS margin or the shadows. Re-run it after changing the master.
+
 ## menu-bar — hint-glyph.svg
 
 A 22×22 template image for the status item, used as `Image("Icon")` in
@@ -89,3 +95,15 @@ editing the path data by hand.
 appearance. It is no longer a template image — a two-colour mark can't be tinted
 flat without losing the mustard — so `template-rendering-intent` is gone and
 `preserves-vector-representation` is set, since `AboutView` scales it to fit.
+
+## social-image
+
+The image shown when a link to the site is shared (`og:image`), `src/static/img/social-preview.png`.
+
+- `card.html` — the image as a 1200×630 page, drawn with the site's own stylesheet and a copy of
+  the hero scene's markup, in its resting state
+- `build.sh` — renders it at 2x with headless Chrome; build the site first (`npm run deploy`)
+
+If the hero scene's markup changes in `src/_includes/section.header.njk`, copy it across again.
+Link previews are cached by the sites that show them, so give the file a new name (and update
+`image` in `src/_data/site.json`) if a change needs to show up straight away.

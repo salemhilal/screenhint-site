@@ -4,7 +4,8 @@
   "description": "ScreenHint is a free Mac app that turns any part of your screen into a floating, resizable note that stays on top, so the information you need is always in front of you.",
   "title": "ScreenHint - photographic memory at your fingertips",
   "language": "en",
-  "image": "/img/screenhint-thumbnail.png",
+  "image": "/img/social-preview.png",
+  "imageAlt": "ScreenHint: photographic memory at your fingertips. A figure from an app window floats beside it as a hint.",
   "social": [
     {
       "title": "Twitter",
