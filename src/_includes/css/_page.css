@@ -1,4 +1,6 @@
 @import "./custom.css";
+@import "./sections.css";
+@import "./hero.css";
 
 @tailwind base;
 

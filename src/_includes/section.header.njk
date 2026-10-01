@@ -1,46 +1,118 @@
-<div class="lg:mt-8 mt-10 flex-0 justify-center w-full text-center">
-	<h1 class="text-black py-3 font-medium text-4xl md:text-5xl lg:text-6xl mb-0 leading-snug">Photographic memory<br/>at your fingertips.</h1>
-</div>
-<div class="hero-video">
-	{# Plays once on load (unless Reduce Motion is on), then click, Enter, or Space plays it again.
-	   The poster covers loading and no-JS. Sizing and framing live in custom.css (.hero-video). #}
-	<div class="hero-video__frame">
-		<video id="heroVideo" muted playsinline preload="auto" tabindex="0" title="Play again"
-			poster="/video/screenhint-demo-poster.jpg" width="1920" height="1114"
-			aria-label="ScreenHint in action: a keyboard shortcut dims the screen, the wind map in the Weather app is selected and becomes a floating hint, the hint is dragged beside the window, and a double-click closes it. Press to play.">
-			<source src="/video/screenhint-demo.webm" type="video/webm">
-			<source src="/video/screenhint-demo.mp4" type="video/mp4">
-		</video>
+<div class="hero__body">
+	<div class="hero-stage">
+		<div class="hint-card hero-card--title">
+			<h1>Photographic memory<br/>at your fingertips.</h1>
+		</div>
+
+		{# The scene is drawn and animated in CSS (hero.css); the script below only switches its classes.
+		   It plays once on load (unless Reduce Motion is on) and rests on the hint beside the window.
+		   Click, Enter, or Space then closes the hint, goes back to the first page, and plays it again. #}
+		<div class="scene" id="heroScene" role="button" tabindex="0" title="Play again"
+			aria-label="ScreenHint in action: a keyboard shortcut tints the screen, a figure in an app window is selected and becomes a floating hint, the hint is dragged beside the window and stays in view while the app moves on to another page. Press to play again.">
+			<div class="scene__inner" aria-hidden="true">
+				<div class="scene-win">
+					<div class="scene-win__bar"><i></i><i></i><i></i></div>
+					<div class="scene-win__side"><b></b><b></b><b></b><b></b><b></b><b></b></div>
+					<div class="scene-page scene-page--report">
+						<div class="scene-bar scene-bar--h" style="top:.45em;width:1.8em"></div>
+						<div class="scene-bar" style="top:.82em;width:4.2em"></div>
+						<div class="scene-bar" style="top:1em;width:3.3em"></div>
+						<div class="scene-stat"><span>Weekly signups</span><strong>1,284</strong><div><i style="height:35%"></i><i style="height:50%"></i><i style="height:42%"></i><i style="height:68%"></i><i style="height:100%"></i></div></div>
+						<div class="scene-panel">
+							<div class="scene-bar" style="top:.25em;width:1.1em"></div>
+							<div class="scene-bar" style="top:.5em;width:1.5em"></div>
+							<div class="scene-bar" style="top:.68em;width:1.3em"></div>
+							<div class="scene-bar" style="top:.86em;width:1.45em"></div>
+							<div class="scene-bar" style="top:1.04em;width:.9em"></div>
+						</div>
+						<div class="scene-bar" style="top:3.85em;width:4.5em"></div>
+						<div class="scene-bar" style="top:4.03em;width:4.1em"></div>
+						<div class="scene-bar" style="top:4.21em;width:4.4em"></div>
+						<div class="scene-bar" style="top:4.39em;width:2.6em"></div>
+					</div>
+					<div class="scene-page scene-page--draft">
+						<div class="scene-bar scene-bar--h" style="top:.45em;width:2.4em"></div>
+						<div class="scene-bar" style="top:.95em;width:4.4em"></div>
+						<div class="scene-bar" style="top:1.13em;width:4.1em"></div>
+						<div class="scene-bar" style="top:1.31em;width:4.5em"></div>
+						<div class="scene-bar" style="top:1.49em;width:3.2em"></div>
+						<div class="scene-bar" style="top:1.95em;width:4.3em"></div>
+						<div class="scene-bar" style="top:2.13em;width:4.5em"></div>
+						<div class="scene-bar" style="top:2.31em;width:3.9em"></div>
+						<div class="scene-bar scene-type1" style="top:2.77em"></div>
+						<div class="scene-bar scene-type2" style="top:2.95em"></div>
+						<div class="scene-bar scene-type3" style="top:3.13em"></div>
+						<div class="scene-caret"></div>
+					</div>
+				</div>
+				<div class="scene-sel"></div>
+				{# The hint is a copy of the figure above #}
+				<div class="scene-hint"><div class="scene-stat"><span>Weekly signups</span><strong>1,284</strong><div><i style="height:35%"></i><i style="height:50%"></i><i style="height:42%"></i><i style="height:68%"></i><i style="height:100%"></i></div></div></div>
+				<div class="scene-keys"><kbd>⌘</kbd><kbd>⇧</kbd><kbd>2</kbd></div>
+				<div class="scene-cursor">
+					<div class="scene-ring"></div>
+					<svg class="scene-arrow" viewBox="0 0 12 18"><path d="M1 1v14l3.6-3.4 2.3 5.3 2.2-1-2.3-5.2H11z" fill="#18181F" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg>
+					<svg class="scene-cross" viewBox="0 0 20 20"><path d="M10 0v20M0 10h20" stroke="#fff" stroke-width="3.2"/><path d="M10 .8v18.4M.8 10h18.4" stroke="#18181F" stroke-width="1.4"/></svg>
+				</div>
+			</div>
+			<span class="scene-replay" aria-hidden="true">
+				<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+				<span class="scene-replay__play">Play</span><span class="scene-replay__again">Replay</span>
+			</span>
+		</div>
+
+		<div class="hero-cta-slot">
+			<div class="hint-card hero-card--cta">
+				<p>ScreenHint for Mac helps you <strong>think clearly</strong> by putting the information you need right <strong>in front of you</strong>.</p>
+				<a class="btn-dark bg-black inline-block px-6 sm:px-10 py-3 rounded-sm shadow text-xl text-white font-normal whitespace-nowrap hover:bg-gray-800" href="https://apps.apple.com/us/app/screenhint/id1566621533">
+					Download for Mac
+				</a>
+			</div>
+		</div>
 	</div>
 </div>
 <script>
 	(function () {
-		var video = document.getElementById('heroVideo');
-		var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		var scene = document.getElementById('heroScene');
+		var state; // still → playing → resting → resetting → playing → …
 
-		function toggle() {
-			if (video.paused || video.ended) {
-				if (video.ended) video.currentTime = 0;
-				video.play().catch(function () {});
-			} else {
-				video.pause();
-			}
+		function enter(next) {
+			state = next;
+			scene.classList.toggle('is-still', next === 'still');
+			scene.classList.toggle('is-resting', next === 'resting');
 		}
 
-		video.addEventListener('click', toggle);
-		video.addEventListener('keydown', function (event) {
+		function play(continuing) {
+			scene.classList.remove('is-resetting', 'is-playing', 'is-continuing');
+			void scene.offsetWidth; // restart the animations
+			scene.classList.add('is-playing');
+			scene.classList.toggle('is-continuing', continuing);
+			enter('playing');
+		}
+
+		function replay() {
+			if (state === 'still') return play(false);
+			if (state !== 'resting') return;
+			scene.classList.remove('is-playing', 'is-continuing');
+			scene.classList.add('is-resetting');
+			enter('resetting');
+		}
+
+		// The pointer's animation runs for the whole of each sequence, so its end marks the sequence's end.
+		scene.addEventListener('animationend', function (event) {
+			if (event.animationName === 'scene-cursor') enter('resting');
+			if (event.animationName === 'scene-cursor-reset') play(true);
+		});
+
+		scene.addEventListener('click', replay);
+		scene.addEventListener('keydown', function (event) {
 			if (event.key === 'Enter' || event.key === ' ') {
 				event.preventDefault();
-				toggle();
+				replay();
 			}
 		});
 
-		if (!reduceMotion.matches) video.play().catch(function () {});
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) enter('still');
+		else play(false);
 	})();
 </script>
-<div class="flex-0 pt-2 pb-6 px-4 sm:px-8 w-full md:w-3/5 lg:1/2 justify-center text-center">
-	<div class="text-balance text-md md:text-lg text-gray-800 mb-4 leading-snug">ScreenHint for Mac helps you <strong>think clearly</strong> by putting the information you need right <strong>in front of you</strong>.</div>
-	<a class="btn-dark bg-black inline-block px-10 py-3 rounded-sm shadow text-xl text-white font-normal hover:bg-gray-800" href="https://apps.apple.com/us/app/screenhint/id1566621533">
-		Download for Mac
-	</a>
-</div>

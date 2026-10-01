@@ -1,5 +1,10 @@
 # Hero demo video
 
+**Not currently used.** The home page hero now shows a scene drawn and animated in CSS
+(`src/_includes/css/hero.css`), and the encoded video and poster were removed from
+`src/static/video/`. These scripts are kept for making a real-app video again; the last encoded
+files are in git history.
+
 Sources for `src/static/video/screenhint-demo.{mp4,webm}` and its poster: a scripted take of
 ScreenHint capturing the wind map from the Weather app, dragging the hint beside the window, and
 double-clicking it away. It loops seamlessly.

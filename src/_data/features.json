@@ -1,18 +1,22 @@
 [
   {
     "title": "Privacy First",
+    "icon": "<rect x=\"5\" y=\"11\" width=\"14\" height=\"10\" rx=\"2\"/><path d=\"M8 11V7a4 4 0 0 1 8 0v4\"/>",
     "content": "Your screen is where you think. ScreenHint will never steal (or sell) any of your personal data, and nothing is stored without your permission."
   },
   {
     "title": "Intuitive",
+    "icon": "<rect x=\"9\" y=\"9\" width=\"12\" height=\"12\" rx=\"2\"/><path d=\"M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1\"/>",
     "content": "You can copy hints just like you'd expect to, and you can paste them anywhere you can paste images."
   },
   {
     "title": "Relatable",
+    "icon": "<path d=\"M12 3v18M3 12h18M9 6l3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3M18 9l3 3-3 3\"/>",
     "content": "Toss things around your desktop just like a real workspace."
   },
   {
     "title": "Flexible",
+    "icon": "<path d=\"M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7\"/>",
     "content": "Pin hints to desktops, resize them, even extract text from them using computer vision."
   }
 ]

@@ -1,0 +1,363 @@
+/* The site's visual language, shared by every page: graph paper and warm paper for light grounds,
+   the app icon's ink for dark ones, white "hint" cards for anything that floats, and mustard only
+   as a hard accent. The home page hero (hero.css) builds on the same pieces. */
+:root {
+  --ink: #18181f;
+  --mustard: #fdc331;
+  --line: #e1e1dc;
+  --paper: #f3f1ec;
+  --graph: #fafaf8;
+}
+
+/* Off-white with a ruled grid. Set --graph-fade to a mask gradient to fade the grid in or out. */
+.graph-paper {
+  position: relative;
+  isolation: isolate;
+  background: var(--graph);
+}
+
+.graph-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center top;
+  -webkit-mask-image: var(--graph-fade, none);
+  mask-image: var(--graph-fade, none);
+}
+
+/* A hint: what ScreenHint leaves floating on your screen */
+.hint-card {
+  background: #fff;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  box-shadow:
+    0 18px 40px -8px rgba(0, 0, 0, 0.35),
+    0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.section-wrap {
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.about h2,
+.features h2,
+.download h2 {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* About: dark graph paper, with real hints floating on it */
+.about {
+  padding: 7rem 1.5rem;
+  color: #fff;
+  background-color: var(--ink);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center top;
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about h2 {
+  font-size: clamp(3rem, 7.5vw, 6.5rem);
+  line-height: 1.02;
+  margin-bottom: 1.75rem;
+}
+
+.about__text {
+  max-width: 28rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: #d1d5db;
+}
+
+/* The screenshot is transparent around the hints, so the shadow follows their outlines */
+.about img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.5));
+}
+
+/* Features: hint cards on paper */
+.features {
+  padding: 7rem 1.5rem 8rem;
+  background: var(--paper);
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: 4fr 7fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.features__intro {
+  position: sticky;
+  top: 4rem;
+}
+
+.features h2 {
+  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+  line-height: 1.08;
+  color: #000;
+  margin-bottom: 1.25rem;
+}
+
+.features__text {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: #1f2937;
+}
+
+.features__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+}
+
+.feature-card {
+  padding: 1.5rem 1.5rem 1.75rem;
+  box-shadow:
+    0 18px 40px -12px rgba(0, 0, 0, 0.28),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+  transition:
+    box-shadow 0.2s ease-out,
+    translate 0.2s ease-out;
+}
+
+/* The right-hand column sits lower, like hints dropped on a desktop rather than cells in a table */
+.feature-card:nth-child(even) {
+  transform: translateY(2.5rem);
+}
+
+/* Hover: the card lifts off a hard mustard block, after the offset cards in the app icon */
+.feature-card:hover {
+  translate: -4px -4px;
+  box-shadow: 12px 12px 0 var(--mustard);
+}
+
+.feature-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.375rem;
+  background: var(--ink);
+  color: var(--mustard);
+}
+
+.feature-card__icon svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 0.4rem;
+}
+
+.feature-card p {
+  line-height: 1.45;
+  color: #374151;
+}
+
+/* Download: an outlined card on a hard mustard block. The grid fades in from the section above. */
+.download {
+  --graph-fade: linear-gradient(to bottom, transparent, #000 45%);
+  padding: 8rem 1.5rem 9rem;
+  text-align: center;
+}
+
+.download__card {
+  display: inline-block;
+  max-width: 100%;
+  padding: 3rem 3.5rem 2.75rem;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  box-shadow: 14px 14px 0 var(--mustard);
+}
+
+.download h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  color: #000;
+  margin-bottom: 0.75rem;
+}
+
+.download__text {
+  font-size: 1.25rem;
+  color: #374151;
+}
+
+.download__badge {
+  display: inline-block;
+  height: 4rem;
+  margin: 1.75rem 0 1rem;
+}
+
+.download small {
+  display: block;
+  color: #4b5563;
+}
+
+/* Footer: ink, with the wordmark */
+.site-footer {
+  padding: 2rem 1.5rem;
+  background: var(--ink);
+  color: #d1d5db;
+}
+
+.site-footer__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 2.5rem;
+}
+
+.site-footer__links {
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__credit {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Text pages: the title is a hint hanging off a graph-paper band, with the body in a reading column */
+.page-head {
+  border-bottom: 1px solid var(--line);
+}
+
+.page-head__title {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 0;
+}
+
+.page-head__title .hint-card {
+  display: inline-block;
+  position: relative;
+  margin-bottom: -1.75rem;
+  padding: 0.9rem 1.75rem 1.1rem;
+}
+
+.page-head h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: #000;
+}
+
+.prose {
+  max-width: 44rem;
+  min-height: calc(100vh - 18rem);
+  margin: 0 auto;
+  padding: 5rem 1.5rem 6rem;
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: #1f2937;
+}
+
+.prose h2 {
+  margin: 2.5rem 0 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #000;
+}
+
+.prose p {
+  margin: 0 0 1.25rem;
+}
+
+/* Links carry a mustard underline that grows into a full highlight on hover, like .hl elsewhere.
+   The underline is a background so it can animate, and so it survives wrapping onto a second line. */
+.prose a {
+  padding: 0 0.1em;
+  margin: 0 -0.1em;
+  border-radius: 2px;
+  text-decoration: none;
+  background-image: linear-gradient(var(--mustard), var(--mustard));
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 0.2s ease-out;
+}
+
+.prose a:hover,
+.prose a:focus-visible {
+  background-size: 100% 100%;
+  color: #000;
+  text-decoration: none;
+}
+
+@media (max-width: 899px) {
+  .about,
+  .features,
+  .download {
+    padding-top: 4.5rem;
+    padding-bottom: 5rem;
+  }
+
+  .about__grid,
+  .features__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .features__intro {
+    position: static;
+  }
+}
+
+@media (max-width: 599px) {
+  .features__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card:nth-child(even) {
+    transform: none;
+  }
+
+  .download__card {
+    padding: 2.25rem 1.5rem 2rem;
+    box-shadow: 8px 8px 0 var(--mustard);
+  }
+
+  .site-footer__links {
+    order: 3;
+    width: 100%;
+  }
+}

@@ -1,0 +1,724 @@
+/* Home page hero: graph paper, with the title and the call to action as "hints" (white cards)
+   floating over an animated scene that shows what ScreenHint does. */
+.hero {
+  --hero-title: clamp(1.75rem, min(4.2vw, 6.6vh), 5rem);
+  /* The grid fades out before the next section */
+  --graph-fade: linear-gradient(to bottom, #000 55%, transparent);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: max(100vh, 36rem);
+}
+
+.hero__body {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* The bottom leaves room for the call-to-action card, which hangs below the stage by about 5.4vw */
+  padding: 1.5rem 1rem calc(5.4vw + 2rem);
+}
+
+/* As wide as fits beside the cards' overhang, or as the height left under the nav and title allows */
+.hero-stage {
+  position: relative;
+  width: min(
+    62vw,
+    calc((100vh - 9.5rem - 5.4vw - 2.24 * var(--hero-title)) * 1.72)
+  );
+  min-width: 30rem;
+}
+
+/* The cards sit above everything in the scene, including the capture wash */
+.hero-stage .hint-card {
+  z-index: 2;
+}
+
+/* Hangs off the stage's left edge and just overlaps the top of the app window */
+.hero-card--title {
+  position: relative;
+  width: max-content;
+  margin: 0 0 -3% -15%;
+  padding: 1.1rem 2rem 1.4rem;
+}
+
+.hero-card--title h1 {
+  font-size: var(--hero-title);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: #000;
+}
+
+/* Where the call-to-action card may sit: a band across the stage from just under the placed hint
+   to a little below the scene (its height and offset are fractions of the stage's width). The card
+   rests on the band's bottom edge. If it's taller than the band, as on short windows where the
+   stage is small, it keeps to the band's top and grows downward instead, so it never covers the hint. */
+.hero-cta-slot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: -11%;
+  aspect-ratio: 100 / 35;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.hero-card--cta {
+  position: relative;
+  width: clamp(20rem, 44%, 25rem);
+  margin: auto -9% 0 0;
+  padding: 1.5rem 1.75rem 1.75rem;
+  pointer-events: auto;
+}
+
+.hero-card--cta p {
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  line-height: 1.4;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+/* Phones and narrow tablets: title, scene, call to action, stacked. Any wider than this and the
+   call-to-action card has room to float without covering the hint. */
+@media (max-width: 959px) {
+  /* The widest line of the title is about 10.6 times its font size, and it has the screen's width
+     less the page and card padding to fit in */
+  .hero {
+    --hero-title: min(2.5rem, calc((100vw - 4.625rem) / 10.6));
+  }
+
+  .hero__body {
+    align-items: flex-start;
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .hero-stage {
+    width: 100%;
+    max-width: 40rem;
+    min-width: 0;
+  }
+
+  .hero-card--title {
+    width: auto;
+    margin: 0;
+    padding: 1rem 1.25rem 1.2rem;
+  }
+
+  .hero-cta-slot {
+    position: static;
+    display: block;
+    margin: 0;
+    aspect-ratio: auto;
+  }
+
+  .hero-card--cta {
+    width: 100%;
+    margin: 0;
+  }
+
+  .scene {
+    margin: 1.75rem 0 2.75rem;
+  }
+}
+
+/* ---------- The scene ----------
+     Everything inside is sized in em, where 1em = 10% of the scene's width (the scene is 10em × 5.8em),
+     so the whole animation scales with its container. Timing lives in the keyframes at the bottom;
+     every element runs on the same --t clock, so a percentage means the same moment everywhere.
+     .is-playing runs the main sequence once (on load, unless Reduce Motion is on) and holds its last
+     frame: the hint beside the window. A click, Enter, or Space then runs .is-resetting (close the hint,
+     click back to the first page) and goes straight into the main sequence again, skipping the pointer's
+     drift-in. With neither class it shows the hint already placed. section.header.njk drives the classes. */
+.scene {
+  --t: 12.8s; /* length of the main sequence */
+  --t-reset: 3.6s; /* length of the reset that a replay starts with */
+  --skip: 0.06; /* fraction of the main sequence a replay skips (the drift-in) */
+  --wash: rgba(164, 204, 252, 0.45); /* capture overlay tint */
+  position: relative;
+  z-index: 1;
+  container-type: inline-size;
+  aspect-ratio: 100 / 58;
+  cursor: pointer;
+}
+.scene__inner {
+  position: absolute;
+  inset: 0;
+  font-size: 10cqw;
+}
+.scene__inner > * {
+  position: absolute;
+}
+
+/* App window */
+.scene-win {
+  left: 0;
+  top: 0.2em;
+  width: 6.8em;
+  height: 5.4em;
+  background: #fff;
+  border-radius: 0.12em;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(24, 24, 31, 0.18),
+    0 0.25em 0.6em -0.15em rgba(0, 0, 0, 0.3);
+}
+.scene-win__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 0.4em;
+  background: #f3f1ec;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 0.07em;
+  padding-left: 0.16em;
+}
+.scene-win__bar i {
+  width: 0.1em;
+  height: 0.1em;
+  border-radius: 50%;
+  background: #cfcdc6;
+}
+.scene-win__side {
+  position: absolute;
+  left: 0;
+  top: 0.4em;
+  bottom: 0;
+  width: 1.5em;
+  background: #f7f6f2;
+  border-right: 1px solid var(--line);
+  padding: 0.3em 0.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.18em;
+}
+.scene-win__side b {
+  height: 0.1em;
+  border-radius: 0.05em;
+  background: #dedcd6;
+}
+.scene-win__side b:nth-child(2) {
+  background: var(--ink);
+  width: 80%;
+}
+.scene-win__side b:nth-child(3) {
+  width: 65%;
+}
+.scene-win__side b:nth-child(4) {
+  width: 90%;
+}
+.scene-win__side b:nth-child(5) {
+  width: 55%;
+}
+.scene-win__side b:nth-child(6) {
+  width: 75%;
+}
+.scene-page {
+  position: absolute;
+  left: 1.5em;
+  top: 0.4em;
+  right: 0;
+  bottom: 0;
+}
+.scene-page > * {
+  position: absolute;
+}
+.scene-bar {
+  height: 0.08em;
+  border-radius: 0.04em;
+  background: #dedcd6;
+  left: 0.4em;
+}
+.scene-bar--h {
+  height: 0.18em;
+  border-radius: 0.04em;
+  background: var(--ink);
+}
+.scene-panel {
+  left: 3em;
+  top: 1.3em;
+  width: 1.9em;
+  height: 2.2em;
+  border: 1px solid var(--line);
+  border-radius: 0.08em;
+}
+.scene-panel .scene-bar {
+  position: absolute;
+  left: 0.2em;
+}
+.scene-type1,
+.scene-type2,
+.scene-type3 {
+  width: 0;
+}
+.scene-caret {
+  left: 0.4em;
+  top: 2.74em;
+  width: 0.025em;
+  height: 0.14em;
+  background: var(--ink);
+}
+
+/* The thing worth remembering. Used twice: in the window, and inside the hint. */
+.scene-stat {
+  width: 2.4em;
+  height: 2.2em;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 0.08em;
+  padding: 0.2em;
+}
+.scene-page .scene-stat {
+  left: 0.4em;
+  top: 1.3em;
+}
+.scene-stat span {
+  display: block;
+  font-size: 0.15em;
+  font-weight: 500;
+  color: #6b7280;
+}
+.scene-stat strong {
+  display: block;
+  font-size: 0.66em;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.scene-stat div {
+  position: absolute;
+  left: 0.2em;
+  right: 0.2em;
+  bottom: 0.2em;
+  height: 0.75em;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.1em;
+}
+.scene-stat div i {
+  flex: 1;
+  background: #dedcd6;
+  border-radius: 0.03em 0.03em 0 0;
+}
+.scene-stat div i:last-child {
+  background: var(--mustard);
+}
+
+/* Selection rectangle. Its enormous shadow is the capture wash, so the selected area stays clear. */
+.scene-sel {
+  left: 1.8em;
+  top: 1.8em;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  outline: 0.025em solid #fff;
+  box-shadow: 0 0 0 200vmax var(--wash);
+}
+
+/* The hint: a snapshot of the selected area, styled like the title and call-to-action cards */
+.scene-hint {
+  left: 1.8em;
+  top: 1.8em;
+  width: 2.6em;
+  height: 2.4em;
+  padding: 0.1em;
+  background: #fff;
+  border: 1px solid var(--ink);
+  border-radius: 0.04em;
+  box-shadow:
+    0 0.2em 0.45em -0.1em rgba(0, 0, 0, 0.35),
+    0 0.04em 0.1em rgba(0, 0, 0, 0.15);
+  transform: translate(5.4em, -1em);
+}
+.scene-hint .scene-stat {
+  position: relative;
+}
+
+.scene-keys {
+  left: 3.4em;
+  top: 4.75em;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.06em;
+  padding: 0.08em;
+  background: var(--ink);
+  border-radius: 0.1em;
+  opacity: 0;
+}
+.scene-keys kbd {
+  font: inherit;
+  font-size: 0.2em;
+  font-weight: 500;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 0.25em;
+  min-width: 1.7em;
+  padding: 0.2em 0.4em;
+  text-align: center;
+}
+
+.scene-cursor .scene-ring {
+  position: absolute;
+  left: -0.3em;
+  top: -0.3em;
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 50%;
+  border: 0.04em solid var(--mustard);
+  background: rgba(253, 195, 49, 0.35);
+  opacity: 0;
+}
+
+.scene-cursor {
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform: translate(8.5em, 2.6em);
+}
+.scene-cursor svg {
+  position: absolute;
+  overflow: visible;
+}
+.scene-cursor .scene-arrow {
+  left: -0.02em;
+  top: -0.02em;
+  width: 0.24em;
+  height: 0.36em;
+}
+.scene-cursor .scene-cross {
+  left: -0.15em;
+  top: -0.15em;
+  width: 0.3em;
+  height: 0.3em;
+  opacity: 0;
+}
+
+.scene-page--draft {
+  opacity: 0;
+}
+
+/* ---------- Timeline (percent of --t; at 12.8s, 1s is about 7.8%) ----------
+       0–6%    pointer drifts in
+       9–15%   shortcut pressed, screen washes blue
+      15–21%   crosshair moves to the corner of the figure
+      22–30%   drag out the selection
+      30–33%   release: wash clears, the hint appears in place
+      40–49%   drag the hint beside the window
+      51–59%   pointer goes to the sidebar and clicks another page
+      66–90%   three lines are typed on the new page; the hint stays
+      90–100%  hold                                                         */
+.is-playing .scene__inner > *,
+.is-playing .scene-page,
+.is-playing .scene-win__side b,
+.is-playing .scene-type1,
+.is-playing .scene-type2,
+.is-playing .scene-type3,
+.is-playing .scene-caret,
+.is-playing .scene-cursor .scene-ring {
+  animation-duration: var(--t);
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+.is-playing .scene-cursor {
+  animation-name: scene-cursor;
+}
+.is-playing .scene-cursor .scene-arrow {
+  animation: scene-arrow var(--t) step-end both;
+}
+.is-playing .scene-cursor .scene-cross {
+  animation: scene-cross var(--t) step-end both;
+}
+.is-playing .scene-cursor .scene-ring {
+  animation-name: scene-ring;
+}
+.is-playing .scene-sel {
+  animation-name: scene-sel;
+}
+.is-playing .scene-hint {
+  animation-name: scene-hint;
+}
+.is-playing .scene-keys {
+  animation-name: scene-keys;
+}
+.is-playing .scene-page--report {
+  animation-name: scene-report;
+}
+.is-playing .scene-page--draft {
+  animation-name: scene-draft;
+}
+.is-playing .scene-win__side b:nth-child(2) {
+  animation-name: scene-nav-report;
+}
+.is-playing .scene-win__side b:nth-child(4) {
+  animation-name: scene-nav-draft;
+}
+.is-playing .scene-type1 {
+  animation-name: scene-type1;
+}
+.is-playing .scene-type2 {
+  animation-name: scene-type2;
+}
+.is-playing .scene-type3 {
+  animation-name: scene-type3;
+}
+.is-playing .scene-caret {
+  animation-name: scene-caret;
+}
+
+/* A replay joins the main sequence where the reset leaves the pointer */
+.is-playing.is-continuing .scene__inner > *,
+.is-playing.is-continuing .scene-page,
+.is-playing.is-continuing .scene-win__side b,
+.is-playing.is-continuing .scene-type1,
+.is-playing.is-continuing .scene-type2,
+.is-playing.is-continuing .scene-type3,
+.is-playing.is-continuing .scene-caret,
+.is-playing.is-continuing .scene-cursor > * {
+  animation-delay: calc(var(--t) * var(--skip) * -1);
+}
+
+/* ---------- Reset (percent of --t-reset; at 3.6s, 1s is about 28%) ----------
+       0–19%   pointer goes to the hint
+      22–33%   double-click
+      29–36%   the hint closes
+      36–58%   pointer goes to the sidebar
+      61–69%   click back to the first page
+      66–92%   pointer moves to where the main sequence picks up              */
+.is-resetting .scene-type1 {
+  width: 4.3em;
+}
+.is-resetting .scene-type2 {
+  width: 4.5em;
+}
+.is-resetting .scene-type3 {
+  width: 2.3em;
+}
+.is-resetting .scene-caret {
+  top: 3.1em;
+  left: 2.7em;
+}
+.is-resetting .scene-cursor,
+.is-resetting .scene-cursor .scene-ring,
+.is-resetting .scene-hint,
+.is-resetting .scene-page,
+.is-resetting .scene-win__side b {
+  animation-duration: var(--t-reset);
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+.is-resetting .scene-cursor {
+  animation-name: scene-cursor-reset;
+}
+.is-resetting .scene-cursor .scene-ring {
+  animation-name: scene-ring-reset;
+}
+.is-resetting .scene-hint {
+  animation-name: scene-hint-reset;
+}
+.is-resetting .scene-page--report {
+  animation-name: scene-report-reset;
+}
+.is-resetting .scene-page--draft {
+  animation-name: scene-draft-reset;
+}
+.is-resetting .scene-win__side b:nth-child(2) {
+  animation-name: scene-nav-report-reset;
+}
+.is-resetting .scene-win__side b:nth-child(4) {
+  animation-name: scene-nav-draft-reset;
+}
+
+@keyframes scene-cursor-reset {
+  0% { transform: translate(5.2em, 4.4em); }
+  19%, 36% { transform: translate(8.5em, 2em); }
+  58%, 66% { transform: translate(0.64em, 1.23em); }
+  92%, 100% { transform: translate(6em, 4.6em); }
+}
+@keyframes scene-ring-reset {
+  0%, 21.9% { opacity: 0; transform: scale(0.3); }
+  22% { opacity: 1; transform: scale(0.3); }
+  27% { opacity: 0; transform: scale(1); }
+  27.9% { opacity: 0; transform: scale(0.3); }
+  28% { opacity: 1; transform: scale(0.3); }
+  33% { opacity: 0; transform: scale(1); }
+  60.9% { opacity: 0; transform: scale(0.3); }
+  61% { opacity: 1; transform: scale(0.3); }
+  67%, 100% { opacity: 0; transform: scale(1); }
+}
+@keyframes scene-hint-reset {
+  0%, 29% { opacity: 1; transform: translate(5.4em, -1em) scale(1); }
+  36%, 100% { opacity: 0; transform: translate(5.4em, -1em) scale(0.94); }
+}
+@keyframes scene-report-reset {
+  0%, 61% { opacity: 0; }
+  69%, 100% { opacity: 1; }
+}
+@keyframes scene-draft-reset {
+  0%, 61% { opacity: 1; }
+  69%, 100% { opacity: 0; }
+}
+@keyframes scene-nav-report-reset {
+  0%, 61% { background: #dedcd6; }
+  64%, 100% { background: #18181f; }
+}
+@keyframes scene-nav-draft-reset {
+  0%, 61% { background: #18181f; }
+  64%, 100% { background: #dedcd6; }
+}
+
+/* ---------- Main sequence keyframes ---------- */
+@keyframes scene-cursor {
+  0% { transform: translate(8em, 5em); }
+  6%, 15% { transform: translate(6em, 4.6em); }
+  21%, 22.5% { transform: translate(1.8em, 1.8em); }
+  30%, 32.5% { transform: translate(4.4em, 4.2em); }
+  37.5%, 40% { transform: translate(3.1em, 3em); }
+  49%, 51% { transform: translate(8.5em, 2em); }
+  57.5%, 61% { transform: translate(0.7em, 1.79em); }
+  66%, 100% { transform: translate(5.2em, 4.4em); }
+}
+@keyframes scene-arrow {
+  0% { opacity: 1; }
+  11% { opacity: 0; }
+  31%, 100% { opacity: 1; }
+}
+@keyframes scene-cross {
+  0% { opacity: 0; }
+  11% { opacity: 1; }
+  31%, 100% { opacity: 0; }
+}
+/* Click pulse on the sidebar */
+@keyframes scene-ring {
+  0%, 58.6% { opacity: 0; transform: scale(0.3); }
+  58.75% { opacity: 1; transform: scale(0.3); }
+  60.6%, 100% { opacity: 0; transform: scale(1); }
+}
+@keyframes scene-sel {
+  0%, 11% { opacity: 0; width: 0; height: 0; }
+  15%, 22.5% { opacity: 1; width: 0; height: 0; }
+  30% { opacity: 1; width: 2.6em; height: 2.4em; }
+  32.5%, 100% { opacity: 0; width: 2.6em; height: 2.4em; }
+}
+@keyframes scene-hint {
+  0%, 30% { opacity: 0; transform: translate(0, 0) scale(0.98); }
+  32.5%, 37.5% { opacity: 1; transform: translate(0, 0) scale(1); }
+  40% { opacity: 1; transform: translate(0, 0) scale(1.03); }
+  49% { opacity: 1; transform: translate(5.4em, -1em) scale(1.03); }
+  51%, 100% { opacity: 1; transform: translate(5.4em, -1em) scale(1); }
+}
+@keyframes scene-keys {
+  0%, 7.5% { opacity: 0; transform: translate(-50%, 0.1em); }
+  9.5%, 16% { opacity: 1; transform: translate(-50%, 0); }
+  19%, 100% { opacity: 0; transform: translate(-50%, 0); }
+}
+@keyframes scene-report {
+  0%, 58.75% { opacity: 1; }
+  62%, 100% { opacity: 0; }
+}
+@keyframes scene-draft {
+  0%, 58.75% { opacity: 0; }
+  62%, 100% { opacity: 1; }
+}
+@keyframes scene-nav-report {
+  0%, 58.75% { background: #18181f; }
+  60%, 100% { background: #dedcd6; }
+}
+@keyframes scene-nav-draft {
+  0%, 58.75% { background: #dedcd6; }
+  60%, 100% { background: #18181f; }
+}
+/* Typing advances in word-sized steps, with the caret keeping pace */
+@keyframes scene-type1 {
+  0%, 66% { width: 0; animation-timing-function: steps(9); }
+  75.5%, 100% { width: 4.3em; }
+}
+@keyframes scene-type2 {
+  0%, 75.6% { width: 0; animation-timing-function: steps(9); }
+  85%, 100% { width: 4.5em; }
+}
+@keyframes scene-type3 {
+  0%, 85.1% { width: 0; animation-timing-function: steps(5); }
+  90%, 100% { width: 2.3em; }
+}
+@keyframes scene-caret {
+  0%, 66% { top: 2.74em; left: 0.4em; animation-timing-function: steps(9); }
+  75.5% { top: 2.74em; left: 4.7em; animation-timing-function: step-end; }
+  75.6% { top: 2.92em; left: 0.4em; animation-timing-function: steps(9); }
+  85% { top: 2.92em; left: 4.9em; animation-timing-function: step-end; }
+  85.1% { top: 3.1em; left: 0.4em; animation-timing-function: steps(5); }
+  90%, 100% { top: 3.1em; left: 2.7em; }
+}
+
+
+/* Play / Replay cue under the window, shown whenever nothing is moving */
+.scene-replay {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.scene-replay svg {
+  width: 1em;
+  height: 1em;
+}
+.is-still .scene-replay,
+.is-resting .scene-replay {
+  opacity: 1;
+}
+.scene-replay__again,
+.is-resting .scene-replay__play {
+  display: none;
+}
+.is-resting .scene-replay__again {
+  display: inline;
+}
+
+/* While the last frame is held, the caret blinks where the typing stopped */
+.is-playing.is-resting .scene-caret {
+  top: 3.1em;
+  left: 2.7em;
+  animation: scene-blink 1.1s step-end infinite;
+}
+@keyframes scene-blink {
+  50% { opacity: 0; }
+}
+
+/* custom.css cuts every animation to an instant under Reduce Motion. Nothing here plays unasked in
+     that case, so when someone presses play, let it run at its real length. */
+@media (prefers-reduced-motion: reduce) {
+  .is-playing .scene__inner > *,
+  .is-playing .scene-page,
+  .is-playing .scene-win__side b,
+  .is-playing .scene-type1,
+  .is-playing .scene-type2,
+  .is-playing .scene-type3,
+  .is-playing .scene-caret,
+  .is-playing .scene-cursor > * {
+    animation-duration: var(--t) !important;
+  }
+  .is-resetting .scene-cursor,
+  .is-resetting .scene-cursor .scene-ring,
+  .is-resetting .scene-hint,
+  .is-resetting .scene-page,
+  .is-resetting .scene-win__side b {
+    animation-duration: var(--t-reset) !important;
+  }
+}
