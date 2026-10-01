@@ -1,30 +1,13 @@
 /* Home page hero: graph paper, with the title and the call to action as "hints" (white cards)
    floating over an animated scene that shows what ScreenHint does. */
 .hero {
-  --ink: #18181f;
-  --mustard: #fdc331;
-  --line: #e1e1dc;
   --hero-title: clamp(1.75rem, min(4.2vw, 6.6vh), 5rem);
-  position: relative;
+  /* The grid fades out before the next section */
+  --graph-fade: linear-gradient(to bottom, #000 55%, transparent);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   min-height: max(100vh, 36rem);
-  background: #fafaf8;
-}
-
-/* The grid fades out before the next section */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: center top;
-  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
-  mask-image: linear-gradient(to bottom, #000 55%, transparent);
 }
 
 .hero__body {
@@ -48,14 +31,8 @@
 }
 
 /* The cards sit above everything in the scene, including the capture wash */
-.hero-card {
+.hero-stage .hint-card {
   z-index: 2;
-  background: #fff;
-  border: 1px solid var(--ink);
-  border-radius: 4px;
-  box-shadow:
-    0 18px 40px -8px rgba(0, 0, 0, 0.35),
-    0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* Hangs off the stage's left edge and just overlaps the top of the app window */

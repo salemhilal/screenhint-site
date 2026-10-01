@@ -118,7 +118,7 @@ html {
 .tippy-tooltip[x-placement^='bottom'] .tippy-arrow {
     border-bottom-color: #ccc;
 }
-/* Visible keyboard focus on every background (black, white, mustard) */
+/* Visible keyboard focus on every background (ink, paper, white) */
 a:focus-visible,
 button:focus-visible,
 .scene:focus-visible {
@@ -167,23 +167,6 @@ h2,
   text-wrap: balance;
 }
 
-/* Footer: short 1px dividers between links; the links keep their full tap height */
-.footer-links li {
-  position: relative;
-}
-
-@media (min-width: 640px) {
-  .footer-links li + li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    height: 1.25rem;
-    transform: translateY(-50%);
-    border-left: 1px solid #D1D5DB;
-  }
-}
-
 /* Respect the OS "Reduce motion" setting */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -196,6 +179,6 @@ h2,
   }
 
   .feature-card:hover {
-    transform: none !important;
+    translate: none !important;
   }
 }
