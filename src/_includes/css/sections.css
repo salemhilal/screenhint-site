@@ -300,11 +300,27 @@
   margin: 0 0 1.25rem;
 }
 
+/* Links carry a mustard underline that grows into a full highlight on hover, like .hl elsewhere.
+   The underline is a background so it can animate, and so it survives wrapping onto a second line. */
 .prose a {
-  text-decoration: underline;
-  text-decoration-color: var(--mustard);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 3px;
+  padding: 0 0.1em;
+  margin: 0 -0.1em;
+  border-radius: 2px;
+  text-decoration: none;
+  background-image: linear-gradient(var(--mustard), var(--mustard));
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 0.2s ease-out;
+}
+
+.prose a:hover,
+.prose a:focus-visible {
+  background-size: 100% 100%;
+  color: #000;
+  text-decoration: none;
 }
 
 @media (max-width: 899px) {
