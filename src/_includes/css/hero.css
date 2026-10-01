@@ -52,12 +52,30 @@
   color: #000;
 }
 
-.hero-card--cta {
+/* Where the call-to-action card may sit: a band across the stage from just under the placed hint
+   to a little below the scene (its height and offset are fractions of the stage's width). The card
+   rests on the band's bottom edge. If it's taller than the band, as on short windows where the
+   stage is small, it keeps to the band's top and grows downward instead, so it never covers the hint. */
+.hero-cta-slot {
   position: absolute;
-  right: -9%;
-  bottom: -15%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: -11%;
+  aspect-ratio: 100 / 35;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.hero-card--cta {
+  position: relative;
   width: clamp(20rem, 44%, 25rem);
+  margin: auto -9% 0 0;
   padding: 1.5rem 1.75rem 1.75rem;
+  pointer-events: auto;
 }
 
 .hero-card--cta p {
@@ -70,8 +88,10 @@
 /* Phones and narrow tablets: title, scene, call to action, stacked. Any wider than this and the
    call-to-action card has room to float without covering the hint. */
 @media (max-width: 959px) {
+  /* The widest line of the title is about 10.6 times its font size, and it has the screen's width
+     less the page and card padding to fit in */
   .hero {
-    --hero-title: clamp(1.6rem, 7.6vw, 2.5rem);
+    --hero-title: min(2.5rem, calc((100vw - 4.625rem) / 10.6));
   }
 
   .hero__body {
@@ -91,11 +111,16 @@
     padding: 1rem 1.25rem 1.2rem;
   }
 
+  .hero-cta-slot {
+    position: static;
+    display: block;
+    margin: 0;
+    aspect-ratio: auto;
+  }
+
   .hero-card--cta {
-    position: relative;
-    right: 0;
-    bottom: 0;
     width: 100%;
+    margin: 0;
   }
 
   .scene {
