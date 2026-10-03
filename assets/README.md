@@ -80,11 +80,11 @@ browser puts them; the baseline is at y=30.5 (half-leading of -1.5 plus a 30px
 ascent inside the 36px line box). The 5%-opacity `shadow-sm` on the chip is
 omitted; it is imperceptible at any size this renders at.
 
-- `wordmark-light.svg` — black "screen", for light backgrounds
-- `wordmark-dark.svg` — white "screen", for dark backgrounds
+- `wordmark-light.svg` — black "screen" and black "hint" on a mustard chip, for light backgrounds
+- `wordmark-dark.svg` — white "screen" and black "hint" on a white chip, for dark backgrounds
 
-The chip and the word "hint" stay black-on-mustard in both, because the chip is
-light enough to carry black text on either background.
+On dark backgrounds the mark is black and white only: a mustard chip next to white
+type on black reads as someone else's logo. The site footer does the same in CSS.
 
 **If the CSS logo changes, these do not follow.** Regenerate them rather than
 editing the path data by hand.
